@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <title>Color Guessing Game</title>
+    </head>
+    <body>
+        <h1>Color Guessing Game</h1>
+        <button type="button" onclick="runGame()">Start Game</button>
+        
+        <script>
+            const Colors_Array = ['cornflowerblue', 'cyan', 'gold', 'honeydew','aliceblue', 'firebrick', 'gainsboro', 'maroon', 'mistyrose', 'saddlebrown'];
+
+            function runGame () {
+                let guess = '';
+                let correct = false;
+                const targetIndex = (Math.floor(Math.random(1)*Colors_Array.length)); 
+                const target = Colors_Array[targetIndex];
+                console.log(targetIndex);
+                console.log(Colors_Array.length);
+                console.log(target);
+                
+                do {
+                    guess = prompt('I am thinking of one of these colors:\n\n' +Colors_Array +'\n\nWhat color am I thinking of?\n');
+
+                    if(guess === null) {
+                        alert('The game has exited. Thank you for playing.  Come back soon.');
+                        return;
+                    }
+
+                    correct = checkGuess(guess, target);
+
+                } while(!correct);
+
+                alert('Congratulations. You correctly guessed the color ' +target +'.');
+            }
+
+            function checkGuess(guess, target) {
+                let correct = false;
+
+                if (!guess === Colors_Array.includes(guess)) {
+                    alert('Your guess is not within the list of available colors.\n\n Please choose a color that is within this list' +Colors_Array +'.');
+                    
+                } else if (guess > target) {
+                    alert('Try again. The correct color is before your guess in the list.');
+                    
+                } else if (guess < target) {
+                    alert('Try again. The correct color is after your guess in the list.');
+                    
+                } else {
+                    correct = true;
+                }
+            
+            return correct; 
+            }
+        </script>
+    </body>
+</html>
